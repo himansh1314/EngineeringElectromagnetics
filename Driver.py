@@ -11,5 +11,7 @@ x = sp.Symbol("x")
 y = sp.Symbol("y")
 z = sp.Symbol("z")
 cartesian = [3*x,4*y,5*z]
-print(eq.carToCyl(cartesian))
-print(eq.carToSph(cartesian))
+print(eq.conversion(cartesian,"cartesian","cylindrical"))
+print(eq.conversion(cartesian,"cartesian","spherical"))
+cartesian2 = [3*x,4*y]
+print(eq.conversion(cartesian2,"cartesian","spherical"))
