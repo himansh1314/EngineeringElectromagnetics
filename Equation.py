@@ -32,5 +32,18 @@ def conversion(cartesian,input_system,output_system):
         else:
             print("Please give the correct input arguments. Example cartesian, spherical, cylindrical")
     except IndexError:
+        print("Index out of range, list must be of size three, incase of NIL field in any of the three axes, put the value zero")
+def divergence(input_field, system):
+    try:
+        if system=="cartesian":
+            divergence = sp.diff(input_field[0],x) + sp.diff(input_field[1],y) + sp.diff(input_field[2],z)
+            return divergence
+        if system=="cylindrical":            
+            divergence = (1/rho)*sp.diff(rho*input_field[0],rho) + (1/rho)*sp.diff(input_field[1],phi) + sp.diff(input_field[2],z)
+            return divergence
+        if system=="spherical":
+            divergence = (1/r**2)*sp.diff(r**2*input_field[0],r)+(1/(r*sp.sin(theta)))*(sp.sin(theta)*input_field[1],theta)+(1/(r*sp.sin(theta)))*sp.diff(input_field[2],phi)
+            return divergence
+    except IndexError:
         print("Index out of range, index must be of size three, incase of NIL field in any of the three axes, put the value zero")
         return "Try again by padding list with 0s"
